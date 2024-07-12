@@ -1,9 +1,9 @@
-import { FunctionComponent, PropsWithChildren } from 'react';
-import { Metadata, Viewport } from 'next';
-import { SimplePaletteColorOptions } from '@mui/material';
+import CurrentLayout from '@/layout';
 import { AppStoreProvider } from '@/store';
 import defaultTheme, { ThemeProvider } from '@/theme';
-import CurrentLayout from '@/layout';
+import { SimplePaletteColorOptions } from '@mui/material';
+import { Metadata, Viewport } from 'next';
+import { FunctionComponent, PropsWithChildren } from 'react';
 import './globals.css';
 
 const THEME_COLOR = (defaultTheme.palette?.primary as SimplePaletteColorOptions)?.main || '#FFFFFF';
@@ -13,7 +13,7 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: '_TITLE_',
+  title: 'Hallo test title root',
   description: '_DESCRIPTION_',
   manifest: '/site.webmanifest',
   // TODO: Add Open Graph metadata

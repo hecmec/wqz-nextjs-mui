@@ -1,0 +1,9 @@
+{
+  "Home": {
+    "title": "Home",
+    "welcome": "Welcome to the home page",
+    "example1": "This is an example message",
+    "example2": "This is another example message",
+    "footer": "This is the footer"
+  }
+}
