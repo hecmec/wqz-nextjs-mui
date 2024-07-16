@@ -14,7 +14,7 @@ const LoginPage: NextPage = () => {
 };
 
 export const metadata: Metadata = {
-  title: 'Login - _TITLE_',
+  title: 'Login - Wunderquiz',
   description: '_DESCRIPTION_',
 };
 

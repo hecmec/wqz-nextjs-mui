@@ -1,7 +1,5 @@
 // import HomePage from './home/page';
-
 // export default HomePage;
-
 import { useTranslations } from 'next-intl';
 
 export default function Index() {

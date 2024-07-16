@@ -1,6 +1,6 @@
-import { Metadata, NextPage } from 'next';
-import { Stack, Typography } from '@mui/material';
 import { AppLink } from '@/components';
+import { Stack, Typography } from '@mui/material';
+import { Metadata, NextPage } from 'next';
 import DemoAppAlert from '../dev/components/DemoAppAlerts';
 import DemoAppButton from '../dev/components/DemoAppButton';
 import DemoAppIcon from '../dev/components/DemoAppIcon';
@@ -8,7 +8,7 @@ import DemoAppIconButton from '../dev/components/DemoAppIconButton';
 import DemoAppImage from '../dev/components/DemoAppImage';
 
 export const metadata: Metadata = {
-  title: '_TITLE_',
+  title: 'Wunderquiz',
   description: '_DESCRIPTION_',
 };
 

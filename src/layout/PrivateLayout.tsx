@@ -1,9 +1,9 @@
-import { FunctionComponent, PropsWithChildren } from 'react';
 import { IS_DEBUG } from '@/config';
 import { LinkToPage } from '@/utils';
+import { FunctionComponent, PropsWithChildren } from 'react';
 import TopBarAndSideBarLayout from './TopBarAndSideBarLayout';
 
-const TITLE_PRIVATE = '_TITLE_'; // Title for pages after authentication
+const TITLE_PRIVATE = 'Wunderquiz'; // Title for pages after authentication
 
 /**
  * SideBar navigation items with links for Private Layout

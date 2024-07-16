@@ -21,7 +21,7 @@ export const metadata: Metadata = {
 
 const RootLayout: FunctionComponent<PropsWithChildren> = ({ children }) => {
   return (
-    <html lang="en">
+    <html lang="fr">
       <body>
         <AppStoreProvider>
           <ThemeProvider>

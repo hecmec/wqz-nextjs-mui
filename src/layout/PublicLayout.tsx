@@ -1,14 +1,14 @@
-import { FunctionComponent, PropsWithChildren } from 'react';
-import { Stack } from '@mui/material';
 import { IS_DEBUG } from '@/config';
-import { LinkToPage } from '@/utils';
 import { useIsMobile } from '@/hooks';
+import { LinkToPage } from '@/utils';
+import { Stack } from '@mui/material';
+import { FunctionComponent, PropsWithChildren } from 'react';
 import { BottomBar } from './components';
-import TopBarAndSideBarLayout from './TopBarAndSideBarLayout';
 import { BOTTOM_BAR_DESKTOP_VISIBLE } from './config';
+import TopBarAndSideBarLayout from './TopBarAndSideBarLayout';
 
 // TODO: change to your app name or other word
-const TITLE_PUBLIC = 'Unauthorized - _TITLE_'; // Title for pages without/before authentication
+const TITLE_PUBLIC = 'Unauthorized - Wunderquiz'; // Title for pages without/before authentication
 
 /**
  * SideBar navigation items with links for Public Layout

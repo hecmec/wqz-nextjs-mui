@@ -1,9 +1,9 @@
 {
   "Home": {
-    "title": "Home",
-    "welcome": "Welcome to the home page",
-    "example1": "This is an example message",
-    "example2": "This is another example message",
-    "footer": "This is the footer"
+    "title": "de_Home",
+    "welcome": "de_Welcome to the home page",
+    "example1": "de_This is an example message",
+    "example2": "de_This is another example message",
+    "footer": "de_This is the footer"
   }
 }
