@@ -1,30 +1,4 @@
-# WQZ - Next.js + Material UI + TypeScript + Next-Intl
-
-## commands
-
-```bash
-npm run dev
-npm run lint
-npm run format
-npm test
-npm run build
-```
-
-
-## i18n by jpe 
-
-For internationalization we use : https://next-intl-docs.vercel.app/docs/getting-started/app-router/with-i18n-routing#getting-started
-
-- translations are in messages/[lang].json
-- i18n.ts is the i18n configuration
-- middleware.ts is the next-intl middleware
-
-
-
-
-
-
-# Cf original README.md 
+# WQZ - Next.js + Material UI + TypeScript Starter
 
 Starter project for Next.js with App Router + Material UI + Next using TypeScript
 

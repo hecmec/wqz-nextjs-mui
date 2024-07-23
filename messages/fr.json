@@ -1,9 +1,14 @@
 {
   "Home": {
-    "title": "fr_Home",
-    "welcome": "fr_Welcome to the home page",
+    "title": "Accueil",
+    "welcome": "Bienvenue sur la page d'accueil",
+    "body1": "Ceci est le corps 1 de la page d'accueil.",
+    "body2": "Ceci est le corps 2 de la page d'accueil.",
     "example1": "fr_This is an example message",
     "example2": "fr_This is another example message",
-    "footer": "fr_This is the footer"
+    "footer": "Ceci est le pied de page"
+  },
+  "About": {
+    "title": "A propos de nous"
   }
 }

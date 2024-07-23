@@ -1,6 +1,6 @@
 {
-  "name": "Wunderquiz",
-  "short_name": "Wunderquiz",
+  "name": "WQZ",
+  "short_name": "WQZ",
   "description": "Une nouvelle app pour Wunderquiz",
   "start_url": ".",
   "theme_color": "#000000",

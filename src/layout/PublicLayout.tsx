@@ -8,7 +8,7 @@ import { BOTTOM_BAR_DESKTOP_VISIBLE } from './config';
 import TopBarAndSideBarLayout from './TopBarAndSideBarLayout';
 
 // TODO: change to your app name or other word
-const TITLE_PUBLIC = 'Unauthorized - Wunderquiz'; // Title for pages without/before authentication
+const TITLE_PUBLIC = 'Unauthorized - FOOBAR'; // Title for pages without/before authentication
 
 /**
  * SideBar navigation items with links for Public Layout

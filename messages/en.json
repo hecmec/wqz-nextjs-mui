@@ -2,8 +2,13 @@
   "Home": {
     "title": "Home",
     "welcome": "Welcome to the home page",
+    "body1": "This is the body1 of the home page.",
+    "body2": "This is the body2 of the home page.",
     "example1": "This is an example message",
     "example2": "This is another example message",
     "footer": "This is the footer"
+  },
+  "About": {
+    "title": "About us"
   }
 }

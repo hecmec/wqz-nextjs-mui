@@ -3,7 +3,7 @@ import { LinkToPage } from '@/utils';
 import { FunctionComponent, PropsWithChildren } from 'react';
 import TopBarAndSideBarLayout from './TopBarAndSideBarLayout';
 
-const TITLE_PRIVATE = 'Wunderquiz'; // Title for pages after authentication
+const TITLE_PRIVATE = 'FOOBAR'; // Title for pages after authentication
 
 /**
  * SideBar navigation items with links for Private Layout
