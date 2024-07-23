@@ -1,9 +1,9 @@
 'use client';
-import { FunctionComponent, MouseEventHandler } from 'react';
-import { ListItemButton, ListItemIcon, ListItemText } from '@mui/material';
 import { AppIcon, AppLink } from '@/components';
 import { LinkToPage } from '@/utils';
+import { ListItemButton, ListItemIcon, ListItemText } from '@mui/material';
 import { usePathname } from 'next/navigation';
+import { FunctionComponent, MouseEventHandler } from 'react';
 
 interface Props extends LinkToPage {
   openInNewTab?: boolean;
@@ -25,6 +25,9 @@ const SideBarNavItem: FunctionComponent<Props> = ({
   onClick,
 }) => {
   const pathname = usePathname();
+  // const locale = useLocale();
+  // const localePath = `/${locale}/${path}`;
+  // console.log('localePath:', localePath);
   const selected = propSelected || (path && path.length > 1 && pathname.startsWith(path)) || false;
 
   return (

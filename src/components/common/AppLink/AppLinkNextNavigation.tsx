@@ -1,11 +1,12 @@
 'use client';
 // See: https://github.com/mui-org/material-ui/blob/6b18675c7e6204b77f4c469e113f62ee8be39178/examples/nextjs-with-typescript/src/Link.tsx
 /* eslint-disable jsx-a11y/anchor-has-content */
-import { AnchorHTMLAttributes, forwardRef } from 'react';
-import clsx from 'clsx';
-import { usePathname } from 'next/navigation';
-import NextLink, { LinkProps as NextLinkProps } from 'next/link';
 import MuiLink, { LinkProps as MuiLinkProps } from '@mui/material/Link';
+import clsx from 'clsx';
+import { useLocale } from 'next-intl';
+import NextLink, { LinkProps as NextLinkProps } from 'next/link';
+import { usePathname } from 'next/navigation';
+import { AnchorHTMLAttributes, forwardRef } from 'react';
 import { APP_LINK_COLOR, APP_LINK_UNDERLINE } from '../../config';
 
 export const EXTERNAL_LINK_PROPS = {
@@ -32,10 +33,14 @@ const NextLinkComposed = forwardRef<HTMLAnchorElement, NextLinkComposedProps>(fu
   { to, linkAs, href, replace, scroll, passHref, shallow, prefetch, ...restOfProps },
   ref
 ) {
+  const locale = useLocale();
+  const localeToPath = `/${locale}${to}`;
+  console.log('localeToPath:', localeToPath);
+
   return (
     <NextLink
       legacyBehavior={true} // TODO: Remove when MUI become compatible with NextJs 13+
-      href={to}
+      href={localeToPath}
       prefetch={prefetch}
       as={linkAs}
       replace={replace}

@@ -15,6 +15,11 @@ const TITLE_PUBLIC = 'Unauthorized - FOOBAR'; // Title for pages without/before 
  */
 const SIDE_BAR_ITEMS: Array<LinkToPage> = [
   {
+    title: 'Home',
+    path: '/',
+    icon: 'home',
+  },
+  {
     title: 'Log In',
     path: '/auth/login',
     icon: 'login',

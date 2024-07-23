@@ -1,6 +1,6 @@
+import { AppAlert, UserInfo } from '@/components';
 import { Stack } from '@mui/material';
 import { NextPage } from 'next';
-import { AppAlert, UserInfo } from '../../components';
 
 /**
  * Renders User Profile Page
