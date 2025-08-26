@@ -3,11 +3,11 @@
 ## commands
 
 ```bash
-npm run dev
-npm run lint
-npm run format
-npm test
-npm run build
+npm run dev     / yarn dev
+npm run lint    / yarn lint
+npm run format  / yarn format
+npm test        / yarn test  
+npm run build   / yarn build
 ```
 
 

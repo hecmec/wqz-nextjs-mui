@@ -17,7 +17,7 @@ const AppImage: FunctionComponent<AppImageProps> = ({
   ...restOfProps
 }) => {
   // Uses custom loader + unoptimized="true" to avoid NextImage warning https://nextjs.org/docs/api-reference/next/image#unoptimized
-  return <NextImage alt={alt} height={height} title={title} unoptimized={true} width={width} {...restOfProps} />;
+  return <NextImage alt={alt} height={height} title={title} unoptimized={true} width={width} src={restOfProps.src}  {...restOfProps} />;
 };
 
 export default AppImage;

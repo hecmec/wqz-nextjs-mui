@@ -3,9 +3,9 @@
   "version": "0.2.9",
   "description": "_DESCRIPTION_",
   "author": {
-    "name": "Anton Karpenko",
-    "email": "i@karpolan.com",
-    "url": "https://karpolan.com"
+    "name": "Immanuel Lupinus",
+    "email": "Immanuel.lupinus@gmail.com",
+    "url": "https://test.com"
   },
   "private": true,
   "keywords": [
@@ -18,7 +18,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/karpolan/nextjs-mui-starter-ts.git"
+    "url": "https://github.com/ImmanuelLupinus/nextjs-mui-starter-ts.git"
   },
   "scripts": {
     "dev": "next dev",
@@ -35,9 +35,9 @@
     "@emotion/react": "latest",
     "@emotion/server": "latest",
     "@emotion/styled": "latest",
-    "@mui/icons-material": "latest",
-    "@mui/material": "latest",
-    "@mui/material-nextjs": "latest",
+    "@mui/icons-material": "~5.15",
+    "@mui/material": "~5.15",
+    "@mui/material-nextjs": "~5.15",
     "clsx": "latest",
     "copy-to-clipboard": "latest",
     "next": "~14.2.0",

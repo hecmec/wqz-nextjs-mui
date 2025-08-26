@@ -14,7 +14,7 @@ export const SERVER_SIDE_MOBILE_FIRST = true; // true - for mobile, false - for 
 export function useIsMobileByWindowsResizing() {
   const theme = useTheme();
   const { width } = useWindowsSize();
-  const onMobile = width <= theme.breakpoints?.values?.sm ?? MOBILE_SCREEN_MAX_WIDTH;
+  const onMobile = width <= theme.breakpoints?.values?.sm; // ?? MOBILE_SCREEN_MAX_WIDTH;
   return onMobile;
 }
 
