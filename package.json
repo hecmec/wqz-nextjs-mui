@@ -1,11 +1,11 @@
 {
   "name": "nextjs-mui-starter-ts",
-  "version": "0.2.9",
+  "version": "0.3",
   "description": "_DESCRIPTION_",
   "author": {
-    "name": "Anton Karpenko",
-    "email": "i@karpolan.com",
-    "url": "https://karpolan.com"
+    "name": "hecmec",
+    "email": "hecmec@gmail.com",
+    "url": "www.wunderquiz.com"
   },
   "private": true,
   "keywords": [
@@ -31,19 +31,19 @@
     "type": "tsc"
   },
   "dependencies": {
-    "@emotion/cache": "latest",
-    "@emotion/react": "latest",
-    "@emotion/server": "latest",
-    "@emotion/styled": "latest",
-    "@mui/icons-material": "latest",
-    "@mui/material": "latest",
-    "@mui/material-nextjs": "latest",
-    "clsx": "latest",
-    "copy-to-clipboard": "latest",
-    "next": "~14.2.0",
-    "next-intl": "^3.17.0",
-    "react": "^18.3",
-    "react-dom": "^18.3"
+    "@emotion/cache": "~11.14.0",
+    "@emotion/react": "~11.14.0",
+    "@emotion/server": "~11.11.0",
+    "@emotion/styled": "~11.14.1",
+    "@mui/icons-material": "~7.3.1",
+    "@mui/material": "~7.3.1",
+    "@mui/material-nextjs": "~7.3.0",
+    "clsx": "~2.1.1",
+    "copy-to-clipboard": "~3.3.3",
+    "next": "~15.5.2",
+    "next-intl": "~4.3.5",
+    "react": "~19.1.1",
+    "react-dom": "~19.1.1"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "latest",

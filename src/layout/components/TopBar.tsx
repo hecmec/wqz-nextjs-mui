@@ -1,9 +1,12 @@
-import { FunctionComponent, ReactNode } from 'react';
 import { AppBar, Toolbar, Typography } from '@mui/material';
+import { getLocale } from 'next-intl/server';
+import { title } from 'process';
+import { JSX } from 'react';
+import { Link } from '../../i18n/routing';
 
-interface Props {
-  endNode?: ReactNode;
-  startNode?: ReactNode;
+interface TopBarProps {
+  endNode?: JSX.Element;
+  startNode?: JSX.Element;
   title?: string;
 }
 
@@ -11,7 +14,9 @@ interface Props {
  * Renders TopBar composition
  * @component TopBar
  */
-const TopBar: FunctionComponent<Props> = ({ endNode, startNode, title = '', ...restOfProps }) => {
+const TopBar = async ({ endNode, startNode, title: string = '', ...restOfProps }: TopBarProps) => {
+  const currentLocale = await getLocale();
+
   return (
     <AppBar
       component="div"
@@ -25,17 +30,15 @@ const TopBar: FunctionComponent<Props> = ({ endNode, startNode, title = '', ...r
       <Toolbar disableGutters sx={{ paddingX: 1 }}>
         {startNode}
 
-        <Typography
-          variant="h6"
-          sx={{
-            marginX: 1,
-            flexGrow: 1,
-            textAlign: 'center',
-            whiteSpace: 'nowrap',
-          }}
-        >
+        <Typography variant="h6" sx={{ marginX: 1, flexGrow: 1, textAlign: 'center', whiteSpace: 'nowrap' }}>
           {title}
         </Typography>
+
+        {currentLocale !== 'de' && (
+          <Link href="/" locale="de">
+            de
+          </Link>
+        )}
 
         {endNode}
       </Toolbar>

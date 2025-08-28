@@ -1,8 +1,8 @@
 'use client';
+import { IS_SERVER } from '@/utils';
+import { useMediaQuery, useTheme } from '@mui/material';
 import { useEffect, useState } from 'react';
 import useWindowsSize from './useWindowSize';
-import { useMediaQuery, useTheme } from '@mui/material';
-import { IS_SERVER } from '@/utils';
 
 export const MOBILE_SCREEN_MAX_WIDTH = 600; // Sync with https://mui.com/material-ui/customization/breakpoints/
 export const SERVER_SIDE_MOBILE_FIRST = true; // true - for mobile, false - for desktop
@@ -14,7 +14,7 @@ export const SERVER_SIDE_MOBILE_FIRST = true; // true - for mobile, false - for 
 export function useIsMobileByWindowsResizing() {
   const theme = useTheme();
   const { width } = useWindowsSize();
-  const onMobile = width <= theme.breakpoints?.values?.sm ?? MOBILE_SCREEN_MAX_WIDTH;
+  const onMobile = width <= theme.breakpoints?.values?.sm;
   return onMobile;
 }
 
@@ -39,7 +39,7 @@ function useIsMobileForNextJs() {
   const [onMobileDelayed, setOnMobileDelayed] = useState(SERVER_SIDE_MOBILE_FIRST);
 
   useEffect(() => {
-    setOnMobileDelayed(onMobile); // Next.js don't allow to use useOnMobileXxx() directly, so we need to use this workaround
+    setOnMobileDelayed(onMobile); // Next.js doesn't allow to use useOnMobileXxx() directly, so we need to use this workaround
   }, [onMobile]);
 
   return onMobileDelayed;

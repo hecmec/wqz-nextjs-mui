@@ -6,9 +6,14 @@
     "body2": "Ceci est le corps 2 de la page d'accueil.",
     "example1": "fr_This is an example message",
     "example2": "fr_This is another example message",
-    "footer": "Ceci est le pied de page"
+    "footer": "Ceci est le pied de page",
+    "about": "a propos"
   },
   "About": {
     "title": "A propos de nous"
+  },
+  "LocaleSwitcher": {
+    "label": "Changer la langue",
+    "locale": "{locale, select, de {🇩🇪 Deutsch} en {🇺🇸 English} fr {🇫🇷 Français} other {Inconnue}}"
   }
 }

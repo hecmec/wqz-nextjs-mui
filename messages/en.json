@@ -6,9 +6,14 @@
     "body2": "This is the body2 of the home page.",
     "example1": "This is an example message",
     "example2": "This is another example message",
-    "footer": "This is the footer"
+    "footer": "This is the footer",
+    "about": "about us"
   },
   "About": {
     "title": "About us"
+  },
+  "LocaleSwitcher": {
+    "label": "Change language",
+    "locale": "{locale, select, de {🇩🇪 Deutsch} en {🇺🇸 English} fr {🇫🇷 Français} other {Unknown}}"
   }
 }

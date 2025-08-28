@@ -10,21 +10,17 @@ npm test
 npm run build
 ```
 
-
-## i18n by jpe 
+## i18n using next-intl by jpe
 
 For internationalization we use : https://next-intl-docs.vercel.app/docs/getting-started/app-router/with-i18n-routing#getting-started
+
+https://next-intl.dev/
 
 - translations are in messages/[lang].json
 - i18n.ts is the i18n configuration
 - middleware.ts is the next-intl middleware
 
-
-
-
-
-
-# Cf original README.md 
+# Cf original README.md
 
 Starter project for Next.js with App Router + Material UI + Next using TypeScript
 
@@ -74,4 +70,3 @@ Builds the app for production or local development to the `.next` folder.<br />
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation]https://nextjs.org/docs/pages/building-your-application/deploying) for more details.
-

@@ -1,11 +1,12 @@
 'use client';
-import { FunctionComponent, useMemo, useState } from 'react';
-import { Stack, StackProps } from '@mui/material';
-import { IS_DEBUG } from '@/config';
 import { AppIconButton, ErrorBoundary } from '@/components';
+import { IS_DEBUG } from '@/config';
+import { useEventSwitchDarkMode, useIsMobile } from '@/hooks';
 import { useAppStore } from '@/store';
 import { LinkToPage } from '@/utils';
-import { useEventSwitchDarkMode, useIsMobile } from '@/hooks';
+import { Stack, StackProps } from '@mui/material';
+import { FunctionComponent, useContext, useMemo, useState } from 'react';
+import { LocaleContext } from '../i18n/LocaleContext';
 import { TopBar } from './components';
 import SideBar, { SideBarProps } from './components/SideBar';
 import {
@@ -16,11 +17,11 @@ import {
   TOP_BAR_MOBILE_HEIGHT,
 } from './config';
 
-interface Props extends StackProps {
+type Props = StackProps & {
   sidebarItems: Array<LinkToPage>;
   title: string;
   variant: 'sidebarAlwaysTemporary' | 'sidebarPersistentOnDesktop' | 'sidebarAlwaysPersistent';
-}
+};
 
 /**
  * Renders "TopBar and SideBar" composition
@@ -31,6 +32,7 @@ const TopBarAndSideBarLayout: FunctionComponent<Props> = ({ children, sidebarIte
   const [sidebarVisible, setSidebarVisible] = useState(false); // TODO: Verify is default value is correct
   const onMobile = useIsMobile();
   const onSwitchDarkMode = useEventSwitchDarkMode();
+  const currentLocale = useContext(LocaleContext);
 
   const sidebarProps = useMemo((): Partial<SideBarProps> => {
     const anchor = onMobile ? SIDE_BAR_MOBILE_ANCHOR : SIDE_BAR_DESKTOP_ANCHOR;
@@ -98,12 +100,7 @@ const TopBarAndSideBarLayout: FunctionComponent<Props> = ({ children, sidebarIte
     ? { startNode: LogoButton, endNode: DarkModeButton }
     : { startNode: DarkModeButton, endNode: LogoButton };
 
-  IS_DEBUG &&
-    console.log('Render <TopbarAndSidebarLayout/>', {
-      onMobile,
-      darkMode: state.darkMode,
-      sidebarProps,
-    });
+  IS_DEBUG && console.log('Render <TopbarAndSidebarLayout/>', { onMobile, darkMode: state.darkMode, sidebarProps });
 
   return (
     <Stack sx={stackStyles}>

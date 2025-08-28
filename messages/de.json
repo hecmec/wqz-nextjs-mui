@@ -2,8 +2,18 @@
   "Home": {
     "title": "de_Home",
     "welcome": "de_Welcome to the home page",
+    "body1": "de_This is the body1 of the home page.",
+    "body2": "de_This is the body2 of the home page.",
     "example1": "de_This is an example message",
     "example2": "de_This is another example message",
-    "footer": "de_This is the footer"
+    "footer": "de_This is the footer",
+    "about": "de_about us"
+  },
+  "About": {
+    "title": "de_About us"
+  },
+  "LocaleSwitcher": {
+    "label": "Sprache ändern",
+    "locale": "{locale, select, de {🇩🇪 Deutsch} en {🇺🇸 English} fr {🇫🇷 Français} other {Unbekannt}}"
   }
 }
