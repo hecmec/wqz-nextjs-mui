@@ -2,14 +2,17 @@ import React from 'react';
 import PrivateLayout from './PrivateLayout';
 import PublicLayout from './PublicLayout';
 
-// If auth must be resolved client-side, always render both skeletons or a loading shell.
-// For demo we assume a server helper can tell us:
-import { headers } from 'next/headers';
+import { getSessionUser } from '@/actions/authActions';
 
+const SESSION_COOKIE = 'app_session';
+
+/**
+ * Checks if user is authenticated on the server
+ * @returns true if user is authenticated, false otherwise
+ */
 async function isAuthenticatedServer(): Promise<boolean> {
-  // Example: check cookie
-  const cookie = (await headers()).get('cookie') || '';
-  return /session=/.test(cookie);
+  const sessionUser = await getSessionUser();
+  return !!sessionUser;
 }
 
 export interface LayoutProps {
@@ -18,6 +21,7 @@ export interface LayoutProps {
 
 const CurrentLayout = async ({ children }: LayoutProps) => {
   const authed = await isAuthenticatedServer();
+
   return authed ? <PrivateLayout>{children}</PrivateLayout> : <PublicLayout>{children}</PublicLayout>;
 };
 

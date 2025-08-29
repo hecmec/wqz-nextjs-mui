@@ -12,12 +12,27 @@ interface AppImageProps extends Omit<ImageProps, 'alt'> {
 const AppImage: FunctionComponent<AppImageProps> = ({
   title, // Note: value has be destructed before usage as default value for other property
   alt = title ?? 'Image',
+  src,
   height = 256,
   width = 256,
-  ...restOfProps
+  ...rest
 }) => {
-  // Uses custom loader + unoptimized="true" to avoid NextImage warning https://nextjs.org/docs/api-reference/next/image#unoptimized
-  return <NextImage alt={alt} height={height} title={title} unoptimized={true} width={width} src={restOfProps.src}  {...restOfProps} />;
+  // Provide defaults only when width/height not supplied and not using fill
+  const isFill = (rest as any).fill;
+  const finalWidth = isFill ? undefined : (width ?? 256);
+  const finalHeight = isFill ? undefined : (height ?? 256);
+
+  return (
+    <NextImage
+      src={src}
+      alt={alt}
+      title={title}
+      width={finalWidth}
+      height={finalHeight}
+      unoptimized
+      {...rest}
+    />
+  );
 };
 
 export default AppImage;

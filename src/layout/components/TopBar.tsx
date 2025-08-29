@@ -1,7 +1,7 @@
+'use client';
 import { AppBar, Toolbar, Typography } from '@mui/material';
-import { getLocale } from 'next-intl/server';
-import { title } from 'process';
 import { JSX } from 'react';
+import { useLocale } from 'next-intl';
 import { Link } from '../../i18n/routing';
 
 interface TopBarProps {
@@ -14,8 +14,8 @@ interface TopBarProps {
  * Renders TopBar composition
  * @component TopBar
  */
-const TopBar = async ({ endNode, startNode, title: string = '', ...restOfProps }: TopBarProps) => {
-  const currentLocale = await getLocale();
+const TopBar = ({ endNode, startNode, title = '', ...restOfProps }: TopBarProps) => {
+  const currentLocale = useLocale();
 
   return (
     <AppBar
@@ -31,12 +31,17 @@ const TopBar = async ({ endNode, startNode, title: string = '', ...restOfProps }
         {startNode}
 
         <Typography variant="h6" sx={{ marginX: 1, flexGrow: 1, textAlign: 'center', whiteSpace: 'nowrap' }}>
-          {title}
+            {title}
         </Typography>
 
         {currentLocale !== 'de' && (
           <Link href="/" locale="de">
             de
+          </Link>
+        )}
+        {currentLocale !== 'fr' && (
+          <Link href="/" locale="fr">
+            fr
           </Link>
         )}
 

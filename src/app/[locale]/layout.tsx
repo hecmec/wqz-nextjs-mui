@@ -8,6 +8,8 @@ import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import '../globals.css';
+import { getInitialAuthState } from '@/actions/authActions';
+import { AppStoreProvider } from '@/store';
 
 const THEME_COLOR = (defaultTheme.palette?.primary as SimplePaletteColorOptions)?.main || '#FFFFFF';
 
@@ -30,18 +32,17 @@ const LocaleLayout = async ({ children, params }: LocaleLayoutProps) => {
     notFound();
   }
   const messages = await getMessages();
+  const auth = await getInitialAuthState();
 
   // Example: pass initialIsMobile = false here or detect again if needed; we keep it simple.
   return (
-    <html lang={locale}>
-      <body>
-        <NextIntlClientProvider messages={messages}>
-          <ClientProviders initialIsMobile={false}>
-            <CurrentLayout>{children}</CurrentLayout>
-          </ClientProviders>
-        </NextIntlClientProvider>
-      </body>
-    </html>
+    <AppStoreProvider initialAuth={auth}>
+      <NextIntlClientProvider messages={messages}>
+        <ClientProviders initialIsMobile={false}>
+          <CurrentLayout>{children}</CurrentLayout>
+        </ClientProviders>
+      </NextIntlClientProvider>
+    </AppStoreProvider>
   );
 };
 export default LocaleLayout;

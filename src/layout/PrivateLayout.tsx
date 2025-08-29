@@ -2,7 +2,7 @@ import { IS_DEBUG } from '@/config';
 import { LinkToPage } from '@/utils';
 import TopBarAndSideBarLayout from './TopBarAndSideBarLayout';
 
-const TITLE_PRIVATE = 'FOOBAR'; // Title for pages after authentication
+const TITLE_PRIVATE = 'FOOBAR Private'; // Title for pages after authentication
 
 /**
  * SideBar navigation items with links for Private Layout
@@ -23,7 +23,7 @@ IS_DEBUG && SIDE_BAR_ITEMS.push({ title: '[Debug Tools]', path: '/dev', icon: 's
  */
 const PrivateLayout: React.FC<React.PropsWithChildren> = (props) => {
   // const locale = useContext(LocaleContext); // use if needed for localized labels
-  document.title = TITLE_PRIVATE;
+  // document.title = TITLE_PRIVATE;
 
   return (
     <TopBarAndSideBarLayout sidebarItems={SIDE_BAR_ITEMS} title={TITLE_PRIVATE} variant="sidebarPersistentOnDesktop">
