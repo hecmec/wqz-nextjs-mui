@@ -6,16 +6,16 @@ import { useAppStore } from '@/store';
 import { LinkToPage } from '@/utils';
 import { Stack, StackProps } from '@mui/material';
 import { FunctionComponent, useContext, useMemo, useState } from 'react';
-import { LocaleContext } from '../i18n/LocaleContext';
-import { TopBar } from './components';
-import SideBar, { SideBarProps } from './components/SideBar';
+import { TopBar } from '.';
+import { LocaleContext } from '../../i18n/LocaleContext';
 import {
   SIDE_BAR_DESKTOP_ANCHOR,
   SIDE_BAR_MOBILE_ANCHOR,
   SIDE_BAR_WIDTH,
   TOP_BAR_DESKTOP_HEIGHT,
   TOP_BAR_MOBILE_HEIGHT,
-} from './config';
+} from '../layoutConfig';
+import SideBar, { SideBarProps } from './SideBar';
 
 type Props = StackProps & {
   sidebarItems: Array<LinkToPage>;

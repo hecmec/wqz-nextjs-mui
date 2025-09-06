@@ -1,6 +1,6 @@
 import { IS_DEBUG } from '@/config';
 import { LinkToPage } from '@/utils';
-import TopBarAndSideBarLayout from './TopBarAndSideBarLayout';
+import TopBarAndSideBarLayout from './components/TopBarAndSideBarLayout';
 
 const TITLE_PRIVATE = 'FOOBAR'; // Title for pages after authentication
 

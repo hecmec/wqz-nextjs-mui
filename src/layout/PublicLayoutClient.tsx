@@ -3,7 +3,7 @@ import { LinkToPage } from '@/utils';
 import { Stack } from '@mui/material';
 import React from 'react';
 import { BottomBar } from './components';
-import TopBarAndSideBarLayout from './TopBarAndSideBarLayout';
+import TopBarAndSideBarLayout from './components/TopBarAndSideBarLayout';
 
 interface PublicLayoutClientProps {
   children: React.ReactNode;

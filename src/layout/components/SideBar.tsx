@@ -1,10 +1,10 @@
-import { FunctionComponent, useCallback, MouseEvent } from 'react';
-import { Stack, Divider, Drawer, DrawerProps, FormControlLabel, Switch, Tooltip } from '@mui/material';
+import { AppIconButton, UserInfo } from '@/components';
+import { useEventLogout, useEventSwitchDarkMode, useIsAuthenticated, useIsMobile } from '@/hooks';
 import { useAppStore } from '@/store';
 import { LinkToPage } from '@/utils';
-import { useEventLogout, useEventSwitchDarkMode, useIsAuthenticated, useIsMobile } from '@/hooks';
-import { AppIconButton, UserInfo } from '@/components';
-import { SIDE_BAR_WIDTH, TOP_BAR_DESKTOP_HEIGHT } from '../config';
+import { Divider, Drawer, DrawerProps, FormControlLabel, Stack, Switch, Tooltip } from '@mui/material';
+import { FunctionComponent, MouseEvent, useCallback } from 'react';
+import { SIDE_BAR_WIDTH, TOP_BAR_DESKTOP_HEIGHT } from '../layoutConfig';
 import SideBarNavList from './SideBarNavList';
 
 export interface SideBarProps extends Pick<DrawerProps, 'anchor' | 'className' | 'open' | 'variant' | 'onClose'> {

@@ -1,9 +1,9 @@
 import { IS_DEBUG } from '@/config';
 import { LinkToPage } from '@/utils';
-import { detectIsMobileFromUserAgent } from '../utils/serverMobileDetection';
-import { BOTTOM_BAR_DESKTOP_VISIBLE } from './config';
-import PublicLayoutClient from './PublicLayoutClient';
 import { headers } from 'next/headers';
+import { detectIsMobileFromUserAgent } from '../utils/serverMobileDetection';
+import { BOTTOM_BAR_DESKTOP_VISIBLE } from './layoutConfig';
+import PublicLayoutClient from './PublicLayoutClient';
 
 const TITLE_PUBLIC = 'Unauthorized - FOOBAR';
 

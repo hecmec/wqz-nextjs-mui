@@ -1,6 +1,5 @@
 'use client';
-// See: https://github.com/mui-org/material-ui/blob/6b18675c7e6204b77f4c469e113f62ee8be39178/examples/nextjs-with-typescript/src/Link.tsx
-/* eslint-disable jsx-a11y/anchor-has-content */
+
 import MuiLink, { LinkProps as MuiLinkProps } from '@mui/material/Link';
 import clsx from 'clsx';
 import { useLocale } from 'next-intl';
@@ -15,125 +14,126 @@ export const EXTERNAL_LINK_PROPS = {
 };
 
 /**
- * Props for NextLinkComposed component
+ * Props for the composed Next.js link.
+ * We collapse "to" into "href" and let Next.js render the anchor (no nested <a>).
  */
 interface NextLinkComposedProps
   extends Omit<AnchorHTMLAttributes<HTMLAnchorElement>, 'href'>,
-    Omit<NextLinkProps, 'href' | 'as' | 'onClick' | 'onMouseEnter'> {
+    Omit<NextLinkProps, 'href' | 'as'> {
   to: NextLinkProps['href'];
   linkAs?: NextLinkProps['as'];
-  href?: NextLinkProps['href'];
 }
 
-/**
- * NextJS composed link to use with Material UI
- * @NextLinkComposed NextLinkComposed
- */
 const NextLinkComposed = forwardRef<HTMLAnchorElement, NextLinkComposedProps>(function NextLinkComposed(
-  { to, linkAs, href, replace, scroll, passHref, shallow, prefetch, ...restOfProps },
+  { to, linkAs, replace, scroll, shallow, prefetch, ...rest },
   ref
 ) {
   const locale = useLocale();
-  const localeToPath = `/${locale}${to}`;
-  console.log('localeToPath:', localeToPath);
+  // Ensure leading slash logic does not double up
+  const toStr = typeof to === 'string' ? to : to?.toString() || '';
+  const href = `/${locale}${toStr.startsWith('/') ? toStr : `/${toStr}`}`;
 
   return (
     <NextLink
-      legacyBehavior={true} // TODO: Remove when MUI become compatible with NextJs 13+
-      href={localeToPath}
-      prefetch={prefetch}
+      ref={ref}
+      href={href}
       as={linkAs}
       replace={replace}
       scroll={scroll}
       shallow={shallow}
-      passHref={passHref}
-    >
-      <a ref={ref} {...restOfProps} />
-    </NextLink>
+      prefetch={prefetch}
+      {...rest}
+    />
   );
 });
 
 /**
- * Props for AppLinkForNext component
+ * AppLinkForNext props
  */
 export type AppLinkForNextProps = {
   activeClassName?: string;
   as?: NextLinkProps['as'];
-  href?: string | NextLinkProps['href'];
+  href?: string | NextLinkProps['href']; // External (string) or internal
   noLinkStyle?: boolean;
-  to?: string | NextLinkProps['href'];
+  to?: string | NextLinkProps['href']; // Internal destination
   openInNewTab?: boolean;
-} & Omit<NextLinkComposedProps, 'to' | 'linkAs' | 'href'> &
+} & Omit<NextLinkComposedProps, 'to'> &
   Omit<MuiLinkProps, 'href'>;
 
-/**
- * Material UI link for NextJS
- * A styled version of the Next.js Link component: https://nextjs.org/docs/#with-link
- * @component AppLinkForNext
- * @param {string} [activeClassName] - class name for active link, applied when the router.pathname matches .href or .to props
- * @param {string} [as] - passed to NextJS Link component in .as prop
- * @param {string} [className] - class name for <a> tag or NextJS Link component
- * @param {object|function} children - content to wrap with <a> tag
- * @param {string} [color] - color of the link
- * @param {boolean} [noLinkStyle] - when true, link will not have MUI styles
- * @param {string} [to] - internal link URI
- * @param {string} [href] - external link URI
- * @param {boolean} [openInNewTab] - link will be opened in new tab when true
- * @param {string} [underline] - controls "underline" style of the MUI link: 'hover' | 'always' | 'none'
- */
-const AppLinkForNext = forwardRef<HTMLAnchorElement, AppLinkForNextProps>(function Link(props, ref) {
+const AppLinkForNext = forwardRef<HTMLAnchorElement, AppLinkForNextProps>(function AppLinkForNext(props, ref) {
   const {
-    activeClassName = 'active', // This class is applied to the Link component when the router.pathname matches the href/to prop
+    activeClassName = 'active',
     as: linkAs,
-    className: classNameProps,
+    className: classNameProp,
     href,
     noLinkStyle,
-    role, // Link don't have roles, so just exclude it from ...restOfProps
+    role,
     color = APP_LINK_COLOR,
     underline = APP_LINK_UNDERLINE,
     to,
     sx,
-    openInNewTab = Boolean(href), // Open external links in new Tab by default
-    ...restOfProps
+    openInNewTab = Boolean(href),
+    ...rest
   } = props;
+
   const currentPath = usePathname();
   const destination = to ?? href ?? '';
-  const pathname = typeof destination === 'string' ? destination : destination.pathname;
-  const className = clsx(classNameProps, {
-    [activeClassName]: pathname == currentPath && activeClassName,
+  const pathname = typeof destination === 'string' ? destination : destination?.toString?.() || '';
+  const className = clsx(classNameProp, {
+    [activeClassName]: pathname === currentPath && activeClassName,
   });
 
   const isExternal =
-    typeof destination === 'string' && (destination.startsWith('http') || destination.startsWith('mailto:'));
+    typeof destination === 'string' &&
+    (destination.startsWith('http://') || destination.startsWith('https://') || destination.startsWith('mailto:'));
 
-  const propsToRender = {
+  const commonLinkProps = {
     color,
-    underline, // 'hover' | 'always' | 'none'
-    ...(openInNewTab && EXTERNAL_LINK_PROPS),
-    ...restOfProps,
+    underline,
+    ...(openInNewTab && isExternal ? EXTERNAL_LINK_PROPS : {}),
   };
 
+  // External link: use plain <a> or MuiLink.
   if (isExternal) {
     if (noLinkStyle) {
-      return <a className={className} href={destination as string} ref={ref as any} {...propsToRender} />;
+      return (
+        <a
+          ref={ref}
+          // eslint-disable-next-line react/no-unknown-property
+          className={className}
+          href={destination}
+          {...commonLinkProps}
+          {...rest}
+        />
+      );
     }
-
-    return <MuiLink className={className} href={destination as string} ref={ref} sx={sx} {...propsToRender} />;
+    return <MuiLink ref={ref} className={className} href={destination} sx={sx} {...commonLinkProps} {...rest} />;
   }
 
+  // Internal link: use NextLinkComposed (no nested <a>)
   if (noLinkStyle) {
-    return <NextLinkComposed className={className} ref={ref as any} to={destination} {...propsToRender} />;
+    return (
+      <NextLinkComposed
+        ref={ref}
+        className={className}
+        to={destination}
+        linkAs={linkAs}
+        {...commonLinkProps}
+        {...rest}
+      />
+    );
   }
 
   return (
     <MuiLink
-      component={NextLinkComposed}
-      linkAs={linkAs}
-      className={className}
+      component={NextLinkComposed as any}
       ref={ref}
-      to={destination}
+      className={className}
+      to={destination as any}
+      linkAs={linkAs}
       sx={sx}
-      {...propsToRender}
+      {...commonLinkProps}
+      {...rest}
     />
   );
 });

@@ -33,7 +33,8 @@ const LocaleLayout = async ({ children, params }: LocaleLayoutProps) => {
 
   // Example: pass initialIsMobile = false here or detect again if needed; we keep it simple.
   return (
-    <html lang={locale}>
+    // <html lang={locale}>
+    <html>
       <body>
         <NextIntlClientProvider messages={messages}>
           <ClientProviders initialIsMobile={false}>
