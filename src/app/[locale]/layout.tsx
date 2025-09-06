@@ -1,6 +1,8 @@
+import { getInitialAuthState } from '@/actions/authActions';
 import { routing } from '@/i18n/routing';
 import CurrentLayout from '@/layout';
 import { ClientProviders } from '@/layout/components/ClientProviders';
+import { AppStoreProvider } from '@/store';
 import defaultTheme from '@/theme';
 import { SimplePaletteColorOptions } from '@mui/material';
 import { Metadata, Viewport } from 'next';
@@ -30,19 +32,17 @@ const LocaleLayout = async ({ children, params }: LocaleLayoutProps) => {
     notFound();
   }
   const messages = await getMessages();
+  const auth = await getInitialAuthState();
 
   // Example: pass initialIsMobile = false here or detect again if needed; we keep it simple.
   return (
-    // <html lang={locale}>
-    <html>
-      <body>
-        <NextIntlClientProvider messages={messages}>
-          <ClientProviders initialIsMobile={false}>
-            <CurrentLayout>{children}</CurrentLayout>
-          </ClientProviders>
-        </NextIntlClientProvider>
-      </body>
-    </html>
+    <AppStoreProvider initialAuth={auth}>
+      <NextIntlClientProvider messages={messages}>
+        <ClientProviders initialIsMobile={false}>
+          <CurrentLayout>{children}</CurrentLayout>
+        </ClientProviders>
+      </NextIntlClientProvider>
+    </AppStoreProvider>
   );
 };
 export default LocaleLayout;

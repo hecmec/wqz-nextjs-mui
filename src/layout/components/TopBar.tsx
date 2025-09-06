@@ -1,4 +1,5 @@
 'use client';
+'use client';
 import { AppBar, Toolbar, Typography } from '@mui/material';
 import { useLocale, useTranslations } from 'next-intl';
 import { title } from 'process';
@@ -40,6 +41,11 @@ const TopBar: React.FC<TopBarProps> = ({ endNode, startNode, title: string = '',
         {currentLocale !== 'de' && (
           <Link href="/" locale="de">
             de
+          </Link>
+        )}
+        {currentLocale !== 'fr' && (
+          <Link href="/" locale="fr">
+            fr
           </Link>
         )}
 

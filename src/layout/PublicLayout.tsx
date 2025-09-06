@@ -7,6 +7,9 @@ import PublicLayoutClient from './PublicLayoutClient';
 
 const TITLE_PUBLIC = 'Unauthorized - FOOBAR';
 
+/**
+ * SideBar navigation items with links for Public Layout
+ */
 const BASE_SIDE_BAR_ITEMS: Array<LinkToPage> = [
   { title: 'Home', path: '/', icon: 'home' },
   { title: 'Log In', path: '/auth/login', icon: 'login' },
@@ -24,6 +27,7 @@ const PublicLayout = async ({ children }: { children: React.ReactNode }) => {
   const ua = (await headers()).get('user-agent');
   const initialIsMobile = detectIsMobileFromUserAgent(ua);
   const sidebarItems = [...BASE_SIDE_BAR_ITEMS];
+  
   if (IS_DEBUG) sidebarItems.push({ title: '[Debug Tools]', path: '/dev', icon: 'settings' });
 
   return (

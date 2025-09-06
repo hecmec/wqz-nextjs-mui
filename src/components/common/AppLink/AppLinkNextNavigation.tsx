@@ -20,11 +20,13 @@ export const EXTERNAL_LINK_PROPS = {
 interface NextLinkComposedProps
   extends Omit<AnchorHTMLAttributes<HTMLAnchorElement>, 'href'>,
     Omit<NextLinkProps, 'href' | 'as'> {
+    Omit<NextLinkProps, 'href' | 'as'> {
   to: NextLinkProps['href'];
   linkAs?: NextLinkProps['as'];
 }
 
 const NextLinkComposed = forwardRef<HTMLAnchorElement, NextLinkComposedProps>(function NextLinkComposed(
+  { to, linkAs, replace, scroll, shallow, prefetch, ...rest },
   { to, linkAs, replace, scroll, shallow, prefetch, ...rest },
   ref
 ) {
@@ -41,6 +43,9 @@ const NextLinkComposed = forwardRef<HTMLAnchorElement, NextLinkComposedProps>(fu
       replace={replace}
       scroll={scroll}
       shallow={shallow}
+      prefetch={prefetch}
+      {...rest}
+    />
       prefetch={prefetch}
       {...rest}
     />
@@ -63,7 +68,9 @@ export type AppLinkForNextProps = {
 const AppLinkForNext = forwardRef<HTMLAnchorElement, AppLinkForNextProps>(function AppLinkForNext(props, ref) {
   const {
     activeClassName = 'active',
+    activeClassName = 'active',
     as: linkAs,
+    className: classNameProp,
     className: classNameProp,
     href,
     noLinkStyle,
@@ -74,7 +81,10 @@ const AppLinkForNext = forwardRef<HTMLAnchorElement, AppLinkForNextProps>(functi
     sx,
     openInNewTab = Boolean(href),
     ...rest
+    openInNewTab = Boolean(href),
+    ...rest
   } = props;
+
 
   const currentPath = usePathname();
   const destination = to ?? href ?? '';
@@ -95,6 +105,7 @@ const AppLinkForNext = forwardRef<HTMLAnchorElement, AppLinkForNextProps>(functi
 
   // External link: use plain <a> or MuiLink.
   if (isExternal) {
+    const externalProps = openInNewTab ? EXTERNAL_LINK_PROPS : {};
     if (noLinkStyle) {
       return (
         <a

@@ -5,6 +5,7 @@ import { AppButton, AppLink } from '@/components';
 import { useAppStore } from '@/store';
 import { useEventLogout } from '@/hooks';
 import { sessionStorageSet } from '@/utils';
+import { loginUser, logoutUser } from '@/actions/authActions';
 
 /**
  * Renders login form for user to authenticate
@@ -13,15 +14,24 @@ import { sessionStorageSet } from '@/utils';
 const LoginForm = () => {
   const router = useRouter();
   const [, dispatch] = useAppStore();
-  const onLogout = useEventLogout();
 
-  const onLogin = () => {
-    // TODO: AUTH: Sample of access token store, replace next line in real application
-    sessionStorageSet('access_token', 'TODO:_save-real-access-token-here');
-
-    dispatch({ type: 'LOG_IN' });
-    router.replace('/'); // Redirect to home page without ability to go back
+  const onLogin = async () => {
+    const res = await loginUser('demo@example.com', 'demo'); // replace with form data
+    if (res.ok) {
+      // sessionStorageSet('access_token', 'TODO:_save-real-access-token-here');
+      dispatch({ type: 'LOG_IN', currentUser: res.user });
+      router.replace('/');
+    } else {
+      // handle error (toast/snackbar)
+      console.error(res.error);
+    }
   };
+
+  const onLogout = async () => {
+    await logoutUser();
+    useEventLogout();
+  };
+
 
   return (
     <Stack alignItems="center" spacing={2} padding={2}>
@@ -45,3 +55,4 @@ const LoginForm = () => {
 };
 
 export default LoginForm;
+

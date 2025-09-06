@@ -25,7 +25,7 @@ export function useEventLogout() {
 
   return useCallback(() => {
     // TODO: AUTH: replace next line with access token saving
-    sessionStorageDelete('access_token');
+    // sessionStorageDelete('access_token');
 
     dispatch({ type: 'LOG_OUT' });
   }, [dispatch]);

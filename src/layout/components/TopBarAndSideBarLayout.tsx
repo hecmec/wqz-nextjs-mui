@@ -106,7 +106,14 @@ const TopBarAndSideBarLayout: FunctionComponent<Props> = ({ children, sidebarIte
     <Stack sx={stackStyles}>
       <Stack component="header">
         <TopBar startNode={startNode} title={title} endNode={endNode} />
-        <SideBar items={sidebarItems} onClose={onSideBarClose} {...sidebarProps} />
+        <SideBar
+          items={sidebarItems}
+          onClose={onSideBarClose}
+          anchor={sidebarProps.anchor}
+          open={sidebarProps.open}
+          variant={sidebarProps.variant}
+          className=""
+        />
       </Stack>
 
       <Stack

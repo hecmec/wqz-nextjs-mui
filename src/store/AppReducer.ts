@@ -23,6 +23,13 @@ const AppReducer: Reducer<AppStoreState, any> = (state, action) => {
       return {
         ...state,
         isAuthenticated: true,
+        currentUser: action.currentUser || state.currentUser,
+      };
+    case 'SET_AUTH':
+      return {
+        ...state,
+        isAuthenticated: action.isAuthenticated,
+        currentUser: action.currentUser,
       };
     case 'LOG_OUT':
       return {
