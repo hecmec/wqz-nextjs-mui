@@ -4,7 +4,17 @@
 
 - The purpose of this document is to define the basic requirements for the WQZ project.
 - The project is a web application that allows users to create and share quizzes.
+- The web application sould be usable as a mobile app via WPA (web progressive app) and should be optimized for mobile use. (mobile first design, very important!!)
 - The quiz container itself is a component that is finished and does not need specification.
+- The focus of this document is on the overall system requirements, including user registration, quiz creation, quiz taking, and sharing functionalities.
+
+### 1.1 Technical Context
+
+- **Framework**: Next.js 14+ (App Router)
+- **UI Library**: Material UI (MUI) v5+
+- **Language**: TypeScript
+- **Internationalization**: next-intl (supporting `[locale]` routing)
+- **State Management**: React Context + Reducers
 
 ## 2. Functional Requirements
 
@@ -134,58 +144,90 @@ All users can browse quizzes.
 
 ### Collection Pages and CollectionEntryPage
 
-- There is a space and page where all collections are presented
-- There is a menu item for this too
-- Each collection is a list of quizzes for a given topic
+- **Route**: `/[locale]/collections` (List) and `/[locale]/collections/[slug]` (Detail)
+- There is a space and page where all collections are presented.
+- A **Collection** is a curated list of quizzes centered around a specific topic (e.g., "Best 80s Music Quizzes").
+- **Collection List Page**: Displays a grid of available collections.
+- **Collection Detail Page**: Displays the collection title, description, and the list of quizzes contained within it (using QuizCards).
 
-### Cours Pages and CoursEntrypage
+### Course Pages and CoursEntrypage
 
-- There is a space and page where all courses are presented
-- There is a menu item for this too
-- Each cours is an ordered incremental list of quizzes of a given level and to a certain aim.
+- **Route**: `/[locale]/courses` (List) and `/[locale]/courses/[slug]` (Detail)
+- There is a space and page where all courses are presented.
+- A **Course** is a structured, ordered sequence of quizzes designed for educational progression (e.g., "Learn French: Level A1").
+- **Course List Page**: Displays available courses.
+- **Course Detail Page**:
+  - Shows progress tracking (e.g., "3/10 quizzes completed").
+  - Users must typically complete quizzes in order, or achieve a minimum score to unlock the next one.
 
-## 3. Quiz Model Requirements
+## 3. Data Model Requirements (TypeScript Interfaces)
 
 ### Quiz
 
-id: string = "";
-title: string | undefined = "";
-imgSrc: string | undefined;
-userLang: string = "fr";
-questList: QuestionType[] = [];
-options: WqzOptions = new WqzOptions();
-lastQuizSession?: QuizSession;
+```typescript
+interface Quiz {
+  id: string;
+  title: string;
+  imgSrc?: string;
+  userLang: string; // e.g., "fr", "en"
+  questList: QuestionType[]; // Array of questions
+  options: QuizOptions;
+  lastQuizSession?: QuizSession; // Specific to the current user context
+  tags?: string[];
+  createdAt: string; // ISO Date
+  updatedAt: string; // ISO Date
+  authorId?: string; // Reference to User
+}
+```
 
 ### QuizOptions
 
-text: {
-title: string;
-intro: string;
-};
-randomize: boolean = true;
-showAnswers: boolean = true;
-canGoBack: boolean = false;
-showMcHints: boolean = true;
-showExplain: boolean = true;
-ignoreCase: boolean = true;
-ignoreAccents: boolean = true;
-maxWrongLetters: number = 0;
-canSave: boolean = false;
-showLogin: boolean = false;
-quizImgPath: string;
-quizAudioPath: string;
+```typescript
+interface QuizOptions {
+  text: {
+    title: string;
+    intro: string;
+  };
+  randomize: boolean; // default: true
+  showAnswers: boolean; // default: true
+  canGoBack: boolean; // default: false
+  showMcHints: boolean; // default: true
+  showExplain: boolean; // default: true
+  ignoreCase: boolean; // default: true
+  ignoreAccents: boolean; // default: true
+  maxWrongLetters: number; // default: 0
+  canSave: boolean; // default: false
+  showLogin: boolean; // default: false
+  quizImgPath?: string;
+  quizAudioPath?: string;
+}
+```
 
 ### QuizSession
 
-\_id: string;
-language: string;
-bonusPoints: number;
-maxPoints: number;
-resultPoints: number;
-numAlmostRightAnswers: number;
-numRightAnswers: number;
-numQuestions: number;
-updated: string;
+```typescript
+interface QuizSession {
+  _id: string;
+  userId?: string; // Optional for anonymous sessions
+  quizId: string;
+  language: string;
+
+  // Scoring
+  bonusPoints: number;
+  maxPoints: number;
+  resultPoints: number; // Actual score achieved
+
+  // Stats
+  numAlmostRightAnswers: number;
+  numRightAnswers: number;
+  numQuestions: number;
+
+  // Metadata
+  startedAt: string; // ISO Date
+  updatedAt: string; // ISO Date (completion time)
+  isCompleted: boolean;
+}
+```
 
 ## 4. Non-Functional Requirements
 
