@@ -25,10 +25,15 @@
 ### 1.3 Technical Context
 
 - **Framework**: Next.js 15+ (App Router)
-- **UI Library**: Material UI (MUI) v7+
+- **UI Library**: new shadcn/ui (old Material UI (MUI) v5+)
 - **Language**: TypeScript
 - **Internationalization**: next-intl (supporting `[locale]` routing)
 - **State Management**: React Context + Reducers
+
+#### 1.3.1 UI Framework
+
+- shadcn/ui (optional, for some components if it fits better with the design)
+  - Tailwind based, small
 
 ### 1.4 Key UX principles
 
