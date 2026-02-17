@@ -498,8 +498,10 @@ Frontend reliability requirements
 
 ### 4.6. Internationalization requirements
 
+- Default locale is French (`fr`), but the app must support at least English (`en`) and German (`de`).
+- Locale is determined by the URL (`/[locale]/...`) and can be switched by the user.
+- The default locale (when visiting `/`) is the browser language if supported, otherwise `fr`.
 - All user-facing strings must go through next-intl.
-- Locale switcher behavior must be defined (keep current route when switching locale).
 - Dates/numbers are formatted per locale.
 
 ### 4.7. Testing requirements
